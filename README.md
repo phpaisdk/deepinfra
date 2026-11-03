@@ -1,12 +1,6 @@
-# aisdk/deepinfra
+# PHP AI SDK — DeepInfra
 
-<a href="https://github.com/phpaisdk/deepinfra/actions"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/phpaisdk/deepinfra/tests.yml?branch=main&label=Tests"></a>
-<a href="https://packagist.org/packages/aisdk/deepinfra"><img alt="Latest Version" src="https://img.shields.io/packagist/v/aisdk/deepinfra"></a>
-<a href="https://packagist.org/packages/aisdk/deepinfra"><img alt="License" src="https://img.shields.io/packagist/l/aisdk/deepinfra"></a>
-
-------
-
-Official DeepInfra provider for the PHP AI SDK. Uses DeepInfra's OpenAI-compatible API.
+Text generation, streaming, embeddings, and image generation through DeepInfra. Part of the framework-agnostic [PHP AI SDK](https://phpaisdk.com).
 
 ## Installation
 
@@ -14,38 +8,27 @@ Official DeepInfra provider for the PHP AI SDK. Uses DeepInfra's OpenAI-compatib
 composer require aisdk/deepinfra
 ```
 
-## Basic Usage
+Set `DEEPINFRA_API_KEY` in your environment.
+
+## Usage
 
 ```php
 use AiSdk\DeepInfra;
 use AiSdk\Generate;
 
-DeepInfra::create(['apiKey' => $_ENV['DEEPINFRA_API_KEY']]);
-
-$result = Generate::text('Explain this code briefly.')
-    ->model(DeepInfra::model('gpt-oss-120b'))
+$result = Generate::text('Explain closures in PHP in one sentence.')
+    ->model(DeepInfra::model('deepseek-ai/DeepSeek-V4.1-Flash'))
     ->run();
+
+echo $result->text;
 ```
-
-## Configuration
-
-| Variable | Description | Default |
-| --- | --- | --- |
-| `DEEPINFRA_API_KEY` | API key for authentication | Required |
-| `DEEPINFRA_BASE_URL` | Base URL for API requests | `https://api.deepinfra.com/v1/openai` |
-
-## Supported Capabilities
-
-| Capability | Support |
-| --- | --- |
-| Text generation and streaming | Native OpenAI-compatible API |
-| Embeddings | Native |
-| Image generation | Native |
-| Tools, structured output, reasoning, multimodal input | Passed through for supported models |
-
-Use `providerOptions('deepinfra', ['raw' => [...]])` for documented DeepInfra fields outside the portable SDK surface. Model IDs are opaque strings and are validated by DeepInfra.
 
 ## Documentation
 
-- [DeepInfra API reference](https://docs.deepinfra.com/api-reference/introduction)
-- [PHP AI SDK documentation](https://phpaisdk.com/docs/deepinfra)
+[Read the documentation](https://phpaisdk.com/docs/0.x/providers/deepinfra) for configuration, supported features, and more examples.
+
+[Contributing](https://github.com/phpaisdk/.github/blob/main/CONTRIBUTING.md) · [Support](https://github.com/phpaisdk/.github/blob/main/SUPPORT.md)
+
+## License
+
+The MIT License (MIT). See [LICENSE](LICENSE) for details.
